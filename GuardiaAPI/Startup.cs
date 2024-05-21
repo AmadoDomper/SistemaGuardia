@@ -20,7 +20,8 @@ public class Startup
                 options.SuppressMapClientErrors = true;
             });
         //services.AddSingleton<IRepository<Contact, int>, InMemoryRepository>();
-        services.AddSingleton<IRepository<Contact, int>, DataBaseRepository>();
+        services.AddSingleton<IRepository<Contact, int>, ContactProvider>();
+        services.AddSingleton<IRepository<Sede, int>, SedeProvider>();
 
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();

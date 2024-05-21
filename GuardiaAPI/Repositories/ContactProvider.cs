@@ -6,10 +6,10 @@ using System.Data;
 
 namespace GuardiaAPI.Repositories
 {
-    public class DataBaseRepository : IRepository<Contact, int>
+    public class ContactProvider : IRepository<Contact, int>
     {
         private readonly IDbConnection _db;
-        public DataBaseRepository(IOptions<ConnectionStringList> connectionStrings)
+        public ContactProvider(IOptions<ConnectionStringList> connectionStrings)
         {
             _db = new MySqlConnection(connectionStrings.Value.Default);
         }
