@@ -18,9 +18,9 @@ namespace GuardiaAPI.Repositories
         {
             _db.Close();
         }
-        public void Delete(int id)
+        public void Delete(int sedeId)
         {
-            _db.Execute("DELETE FROM Sede WHERE Id = @id", new { id }); ;
+            _db.Execute("DELETE FROM Sede WHERE SedeId = @SedeId", new { sedeId }); ;
         }
 
         public List<Sede> GetAll()
@@ -28,9 +28,9 @@ namespace GuardiaAPI.Repositories
             return _db.Query<Sede>("SELECT * FROM sede").ToList(); ;
         }
 
-        public Sede GetById(int id)
+        public Sede GetById(int sedeId)
         {
-            return _db.Query<Sede>("SELECT * FROM Sede WHERE id = @id", new { id }).FirstOrDefault(new Sede()); ;
+            return _db.Query<Sede>("SELECT * FROM Sede WHERE SedeId = @SedeId", new { sedeId }).FirstOrDefault(new Sede()); ;
         }
 
         public Sede Insert(Sede entity)
@@ -39,25 +39,25 @@ namespace GuardiaAPI.Repositories
                         VALUES (@Name, @Adress, @City);
                         SELECT LAST_INSERT_ID();";
 
-            var id = _db.Query<int>(sql, entity).Single();
-            entity.SedeId = id;
+            var sedeId = _db.Query<int>(sql, entity).Single();
+            entity.SedeId = sedeId;
             return entity; ;
         }
 
-        public void Update(Sede entity, int id)
+        public void Update(Sede entity, int sedeId)
         {
-            var sql = @"UPDATE miembro SET 
+            var sql = @"UPDATE Sede SET 
                         Name = @Name, 
                         Adress = @Adress, 
                         City = @City
-                        WHERE Id = @Id";
+                        WHERE SedeId = @SedeId";
 
             _db.Execute(sql, new
             {
                 entity.Name,
                 entity.Adress,
                 entity.City,
-                Id = id
+                SedeId = sedeId
             }); ;
         }
     }

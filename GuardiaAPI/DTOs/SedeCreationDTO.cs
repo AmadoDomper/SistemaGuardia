@@ -6,8 +6,8 @@ namespace GuardiaAPI.DTOs
     {
         [Required(ErrorMessage = "The field with name {0} is required")]
         [StringLength(100)]
-        public string nombre { get; set; }
-        public string direccion { get; set; }
-        public string ciudad { get; set; }
+        public string Name { get; set; }
+        public string Adress { get; set; }
+        public string City { get; set; }
     }
 }
