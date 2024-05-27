@@ -30,7 +30,7 @@ namespace GuardiaAPI.Controllers
         {
             var sede = _repository.GetById(id);
 
-            if (sede == null)
+            if (sede.SedeId == null)
             {
                 return NotFound();
             }
@@ -56,7 +56,7 @@ namespace GuardiaAPI.Controllers
         {
             var existingSede = _repository.GetById(id);
 
-            if (existingSede == null)
+            if (existingSede.SedeId == null)
             {
                 return NotFound();
             }
@@ -72,7 +72,7 @@ namespace GuardiaAPI.Controllers
         {
             var existingSede = _repository.GetById(id);
 
-            if (existingSede == null)
+            if (existingSede.SedeId == null)
             {
                 return NotFound();
             }

@@ -13,6 +13,9 @@ namespace GuardiaAPI.Helper
 
             CreateMap<SedeDTO, Sede>().ReverseMap();
             CreateMap<SedeCreationDTO, Sede>();
+
+            CreateMap<UserDTO, User>().ReverseMap();
+            CreateMap<UserCreationDTO, User>();
         }
     }
 }
