@@ -22,6 +22,7 @@ public class Startup
         //services.AddSingleton<IRepository<Contact, int>, InMemoryRepository>();
         services.AddSingleton<IRepository<Contact, int>, ContactProvider>();
         services.AddSingleton<IRepository<Sede, int>, SedeProvider>();
+        services.AddSingleton<IRepository<User, int>, UserProvider>();
 
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
