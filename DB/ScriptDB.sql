@@ -43,6 +43,43 @@ INSERT INTO `miembro` VALUES (2,'Juan Perez','juan.perez@gmail.com','993265873',
 UNLOCK TABLES;
 
 --
+-- Table structure for table `person`
+--
+
+DROP TABLE IF EXISTS `person`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `person` (
+  `PersonId` int NOT NULL AUTO_INCREMENT,
+  `PersonType` tinyint DEFAULT NULL,
+  `FirstName` varchar(200) NOT NULL,
+  `LastName` varchar(200) NOT NULL,
+  `Email` varchar(100) DEFAULT NULL,
+  `Phone` varchar(50) DEFAULT NULL,
+  `DocumentType` tinyint DEFAULT NULL,
+  `Document` varchar(50) NOT NULL,
+  `PhotoUrl` varchar(200) DEFAULT NULL,
+  `SedeId` int NOT NULL,
+  `CreatedDate` datetime NOT NULL,
+  `ModifiedDate` datetime DEFAULT NULL,
+  `State` tinyint DEFAULT NULL,
+  PRIMARY KEY (`PersonId`),
+  KEY `SedeId` (`SedeId`),
+  CONSTRAINT `person_ibfk_1` FOREIGN KEY (`SedeId`) REFERENCES `sede` (`SedeId`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `person`
+--
+
+LOCK TABLES `person` WRITE;
+/*!40000 ALTER TABLE `person` DISABLE KEYS */;
+INSERT INTO `person` VALUES (1,1,'Manuel','Pereira',NULL,NULL,1,'88227722',NULL,1,'2024-05-27 12:14:23',NULL,1),(2,1,'Daniel','Ruiz','daniel@daniel.com','999888777',1,'78692211',NULL,2,'2024-05-27 12:15:23',NULL,1),(4,3,'Jacob Guillermo','Valenzuela','daniel@daniel.com','999888777',1,'78692211',NULL,2,'2024-05-27 12:15:23',NULL,1),(5,1,'Lucas','Gutierrez',NULL,NULL,1,'88227722',NULL,1,'2024-05-27 12:14:23',NULL,1),(6,2,'Juan','Mosto','daniel@daniel.com','999888777',2,'78692211',NULL,2,'2024-05-27 12:15:23',NULL,2),(7,3,'Ernesto','Ampudia','ernesto@utia.com','999888777',1,'78692211',NULL,2,'2024-05-27 12:15:23','0001-01-01 00:00:00',1),(9,3,'Miguel','salas','salas@salas.com','999888111',1,'99912331',NULL,2,'2024-05-28 17:56:29',NULL,1);
+/*!40000 ALTER TABLE `person` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `rol`
 --
 
@@ -135,4 +172,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-27 10:33:00
+-- Dump completed on 2024-05-29 10:01:26
