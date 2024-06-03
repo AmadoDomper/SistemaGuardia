@@ -19,6 +19,12 @@ namespace GuardiaAPI.Helper
 
             CreateMap<PersonDTO, Person>().ReverseMap();
             CreateMap<PersonCreationDTO, Person>();
+
+            CreateMap<GuardDutyDTO, GuardDuty>().ReverseMap();
+            CreateMap<GuardDutyCreationDTO, GuardDuty>();
+
+            CreateMap<AttendanceDTO, Attendance>().ReverseMap();
+            CreateMap<AttendanceCreationDTO, Attendance>();
         }
     }
 }

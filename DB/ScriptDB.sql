@@ -16,6 +16,73 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `attendance`
+--
+
+DROP TABLE IF EXISTS `attendance`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `attendance` (
+  `AttendanceId` int NOT NULL AUTO_INCREMENT,
+  `PersonId` int NOT NULL,
+  `UserId` int NOT NULL,
+  `GuardDutyId` int NOT NULL,
+  `DateIn` datetime NOT NULL,
+  `DateOut` datetime NOT NULL,
+  `Status` tinyint NOT NULL,
+  PRIMARY KEY (`AttendanceId`),
+  KEY `PersonId` (`PersonId`),
+  KEY `UserId` (`UserId`),
+  KEY `GuardDutyId` (`GuardDutyId`),
+  CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`PersonId`) REFERENCES `person` (`PersonId`),
+  CONSTRAINT `attendance_ibfk_2` FOREIGN KEY (`UserId`) REFERENCES `usuario` (`UserId`),
+  CONSTRAINT `attendance_ibfk_3` FOREIGN KEY (`GuardDutyId`) REFERENCES `guardduty` (`UserId`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `attendance`
+--
+
+LOCK TABLES `attendance` WRITE;
+/*!40000 ALTER TABLE `attendance` DISABLE KEYS */;
+INSERT INTO `attendance` VALUES (1,1,2,2,'2024-06-04 12:15:23','2024-06-05 20:15:23',1),(2,1,2,2,'2024-06-04 12:11:23','2024-06-05 20:13:23',1),(3,1,1,2,'2024-06-04 12:18:23','2024-06-05 20:14:23',1),(4,1,1,2,'2024-06-04 12:19:23','2024-06-05 20:16:23',1);
+/*!40000 ALTER TABLE `attendance` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `guardduty`
+--
+
+DROP TABLE IF EXISTS `guardduty`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `guardduty` (
+  `GuardDutyId` int NOT NULL AUTO_INCREMENT,
+  `PersonId` int NOT NULL,
+  `UserId` int NOT NULL,
+  `DateIn` datetime NOT NULL,
+  `DateOut` datetime NOT NULL,
+  `Status` tinyint NOT NULL,
+  PRIMARY KEY (`GuardDutyId`),
+  KEY `PersonId` (`PersonId`),
+  KEY `UserId` (`UserId`),
+  CONSTRAINT `guardduty_ibfk_1` FOREIGN KEY (`PersonId`) REFERENCES `person` (`PersonId`),
+  CONSTRAINT `guardduty_ibfk_2` FOREIGN KEY (`UserId`) REFERENCES `usuario` (`UserId`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `guardduty`
+--
+
+LOCK TABLES `guardduty` WRITE;
+/*!40000 ALTER TABLE `guardduty` DISABLE KEYS */;
+INSERT INTO `guardduty` VALUES (1,4,3,'2024-06-04 12:15:23','2024-06-05 20:15:23',1),(2,5,2,'2024-06-04 12:15:23','2024-06-05 20:15:23',1),(3,6,1,'2024-06-04 12:15:23','2024-06-05 20:00:23',1),(4,7,3,'2024-06-04 12:15:23','2024-06-05 19:15:23',1);
+/*!40000 ALTER TABLE `guardduty` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `miembro`
 --
 
@@ -172,4 +239,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-29 10:01:26
+-- Dump completed on 2024-06-03 17:40:29
