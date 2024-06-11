@@ -24,6 +24,8 @@ public class Startup
         services.AddSingleton<IRepository<Sede, int>, SedeProvider>();
         services.AddSingleton<IRepository<User, int>, UserProvider>();
         services.AddSingleton<IRepository<Person, int>, PersonRepositoy>();
+        services.AddSingleton<IRepository<GuardDuty, int>, GuardDutyRepository>();
+        services.AddSingleton<IRepository<Attendance, int>, AttendanceRepository>();
 
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
