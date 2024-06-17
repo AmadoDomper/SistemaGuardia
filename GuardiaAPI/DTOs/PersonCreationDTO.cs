@@ -26,7 +26,7 @@ namespace GuardiaAPI.DTOs
 
         [Required]
         [StringLength(50)]
-        public string Document { get; set; }
+        public string? Document { get; set; }
 
         [StringLength(200)]
         public string? PhotoUrl { get; set; }
