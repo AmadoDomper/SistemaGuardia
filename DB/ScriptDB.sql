@@ -37,7 +37,7 @@ CREATE TABLE `attendance` (
   CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`PersonId`) REFERENCES `person` (`PersonId`),
   CONSTRAINT `attendance_ibfk_2` FOREIGN KEY (`UserId`) REFERENCES `usuario` (`UserId`),
   CONSTRAINT `attendance_ibfk_3` FOREIGN KEY (`GuardDutyId`) REFERENCES `guardduty` (`UserId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +69,7 @@ CREATE TABLE `guardduty` (
   KEY `UserId` (`UserId`),
   CONSTRAINT `guardduty_ibfk_1` FOREIGN KEY (`PersonId`) REFERENCES `person` (`PersonId`),
   CONSTRAINT `guardduty_ibfk_2` FOREIGN KEY (`UserId`) REFERENCES `usuario` (`UserId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,7 +78,7 @@ CREATE TABLE `guardduty` (
 
 LOCK TABLES `guardduty` WRITE;
 /*!40000 ALTER TABLE `guardduty` DISABLE KEYS */;
-INSERT INTO `guardduty` VALUES (1,4,3,'2024-06-04 12:15:23','2024-06-05 20:15:23',1),(2,5,2,'2024-06-04 12:15:23','2024-06-05 20:15:23',1),(3,6,1,'2024-06-04 12:15:23','2024-06-05 20:00:23',1),(4,7,3,'2024-06-04 12:15:23','2024-06-05 19:15:23',1);
+INSERT INTO `guardduty` VALUES (1,4,3,'2024-06-04 12:15:23','2024-06-05 20:15:23',1),(2,5,2,'2024-06-04 12:15:23','2024-06-05 20:15:23',1),(3,6,1,'2024-06-04 12:15:23','2024-06-05 20:00:23',1),(4,7,3,'2024-06-04 12:15:23','2024-06-05 19:15:23',0),(6,11,2,'2024-06-10 12:15:23','2024-06-11 19:15:23',0);
 /*!40000 ALTER TABLE `guardduty` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -133,7 +133,7 @@ CREATE TABLE `person` (
   PRIMARY KEY (`PersonId`),
   KEY `SedeId` (`SedeId`),
   CONSTRAINT `person_ibfk_1` FOREIGN KEY (`SedeId`) REFERENCES `sede` (`SedeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -142,7 +142,7 @@ CREATE TABLE `person` (
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
-INSERT INTO `person` VALUES (1,1,'Manuel','Pereira',NULL,NULL,1,'88227722',NULL,1,'2024-05-27 12:14:23',NULL,1),(2,1,'Daniel','Ruiz','daniel@daniel.com','999888777',1,'78692211',NULL,2,'2024-05-27 12:15:23',NULL,1),(4,3,'Jacob Guillermo','Valenzuela','daniel@daniel.com','999888777',1,'78692211',NULL,2,'2024-05-27 12:15:23',NULL,1),(5,1,'Lucas','Gutierrez',NULL,NULL,1,'88227722',NULL,1,'2024-05-27 12:14:23',NULL,1),(6,2,'Juan','Mosto','daniel@daniel.com','999888777',2,'78692211',NULL,2,'2024-05-27 12:15:23',NULL,2),(7,3,'Ernesto','Ampudia','ernesto@utia.com','999888777',1,'78692211',NULL,2,'2024-05-27 12:15:23','0001-01-01 00:00:00',1),(9,3,'Miguel','salas','salas@salas.com','999888111',1,'99912331',NULL,2,'2024-05-28 17:56:29',NULL,1);
+INSERT INTO `person` VALUES (1,1,'Manuel','Pereira',NULL,NULL,1,'88227722',NULL,1,'2024-05-27 12:14:23',NULL,1),(2,1,'Daniel','Ruiz','daniel@daniel.com','999888777',1,'78692211',NULL,2,'2024-05-27 12:15:23',NULL,1),(4,3,'Jacob Guillermo','Valenzuela','daniel@daniel.com','999888777',1,'78692211',NULL,2,'2024-05-27 12:15:23',NULL,1),(5,1,'Lucas','Gutierrez',NULL,NULL,1,'88227722',NULL,1,'2024-05-27 12:14:23',NULL,1),(6,2,'Juan','Mosto','daniel@daniel.com','999888777',2,'78692211',NULL,2,'2024-05-27 12:15:23',NULL,2),(7,3,'Ernesto','Ampudia','ernesto@utia.com','999888777',1,'78692211',NULL,2,'2024-05-27 12:15:23','0001-01-01 00:00:00',1),(9,3,'Miguel','salas','salas@salas.com','999888111',1,'99912331',NULL,2,'2024-05-28 17:56:29',NULL,1),(11,1,'Hector','Delgado','hector','111222333',2,'66442288',NULL,2,'2024-06-06 12:14:23',NULL,1);
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,7 +184,7 @@ CREATE TABLE `sede` (
   `Address` varchar(200) DEFAULT NULL,
   `City` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`SedeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -193,7 +193,7 @@ CREATE TABLE `sede` (
 
 LOCK TABLES `sede` WRITE;
 /*!40000 ALTER TABLE `sede` DISABLE KEYS */;
-INSERT INTO `sede` VALUES (1,'ACROPOLIS LIMA','JAVIER PRADO ESTE 974','LIMA'),(2,'ACROPOLIS TARAPOTO','AV. LAMBAYEQUE 2355','LAMBAYAQUE'),(3,'ACROPOLIS IQUITOS','AVENIDA QUIÑONES 2388','IQUITOS');
+INSERT INTO `sede` VALUES (1,'ACROPOLIS LIMA','JAVIER PRADO ESTE 974','LIMA'),(2,'ACROPOLIS TARAPOTO','AV. LAMBAYEQUE 2355','LAMBAYAQUE'),(3,'ACROPOLIS IQUITOS','AVENIDA QUIÑONES 2388','IQUITOS'),(6,'ACROPOLIS TINGO MARIA','Calle TINGO 123','TINGO MARÍA'),(7,'ACROPOLIS SAN LUIS','JAVIER PRADO 2','JUNIN');
 /*!40000 ALTER TABLE `sede` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -217,7 +217,7 @@ CREATE TABLE `usuario` (
   KEY `Sede_FK` (`SedeId`),
   CONSTRAINT `Rol_FK` FOREIGN KEY (`RolId`) REFERENCES `rol` (`RolId`),
   CONSTRAINT `Sede_FK` FOREIGN KEY (`SedeId`) REFERENCES `sede` (`SedeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -229,6 +229,891 @@ LOCK TABLES `usuario` WRITE;
 INSERT INTO `usuario` VALUES (1,'Cristian Pérez','Casa12345','cristian@cris.com',1,3,1),(2,'Juan Ortiz','acropolis123','juan@juan.com',2,1,0),(3,'Miguel Angel','Miguel2344','miguel@miguel.com',1,3,0);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'guardiadb'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `AddNewAttendance` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddNewAttendance`(
+		IN _PersonId	int,
+		IN _UserId	int,
+		IN _GuardDutyId	int,
+		IN _DateIn	datetime,
+		IN _DateOut	datetime,
+		IN _Status	tinyint
+    )
+BEGIN
+    INSERT INTO attendance
+    (
+		PersonId,
+		UserId,
+		GuardDutyId,
+		DateIn,
+		DateOut,
+		Status
+	)
+    VALUES
+    (
+		_PersonId,
+		_UserId,
+		_GuardDutyId,
+		_DateIn,
+		_DateOut,
+		_Status	
+    );
+    SELECT * FROM attendance
+    WHERE
+	(PersonId= _PersonId	 	 AND  _PersonId IS NOT NULL)AND		
+	(UserId= _UserId	         AND  _UserId IS NOT NULL)AND
+	(GuardDutyId= _GuardDutyId   AND  _GuardDutyId IS NOT NULL)AND	
+	(DateIn= _DateIn	         AND _DateIn IS NOT NULL)AND
+	(DateOut= _DateOut	         AND _DateOut IS NOT NULL)AND
+	(Status= _Status	         AND _Status IS NOT NULL);
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `AddNewGuardDuty` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddNewGuardDuty`(
+			IN _PersonId	int,
+			IN _UserId	int,
+			IN _DateIn	datetime,
+			IN _DateOut	datetime,
+			IN _Status	tinyint
+		)
+BEGIN
+		INSERT INTO guardduty
+        (
+        PersonId,
+		UserId,
+		DateIn,
+		DateOut,
+		Status
+        )
+        VALUES
+        (
+        _PersonId,
+		_UserId,
+		_DateIn,
+		_DateOut,
+		_Status
+        );
+        SELECT * FROM guardduty
+        WHERE
+        (PersonId= _PersonId AND _PersonId IS NOT NULL) AND
+		(UserId= _UserId AND _UserId IS NOT NULL) AND
+		(DateIn= _DateIn AND _DateIn IS NOT NULL) AND
+		(DateOut= _DateOut AND _DateOut IS NOT NULL) AND
+		(Status= _Status AND _Status IS NOT NULL);
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `AddNewPerson` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddNewPerson`(
+    IN _PersonType	tinyint	,
+	IN _FirstName	varchar(200),
+	IN _LastName	varchar(200),
+	IN _Email	varchar(100),
+	IN _Phone	varchar(50),
+	IN _DocumentType	tinyint,
+	IN _Document	varchar(50),
+	IN _PhotoUrl	varchar(200),
+	IN _SedeId	int,
+	IN _CreatedDate	datetime,
+	IN _ModifiedDate	datetime,
+	IN _State	tinyint
+    )
+BEGIN
+		INSERT INTO Person
+        (
+        PersonType,
+		FirstName,
+		LastName,
+		Email,
+		Phone,
+		DocumentType,
+		Document,
+		PhotoUrl,
+		SedeId,
+		CreatedDate,
+		ModifiedDate,
+		State
+        )
+        VALUES
+        (
+		 _PersonType,
+		 _FirstName,
+		 _LastName,
+		 _Email,
+		 _Phone,
+		 _DocumentType,
+		 _Document,
+		 _PhotoUrl,
+		 _SedeId,
+		 _CreatedDate,
+		 _ModifiedDate,
+		 _State
+        );
+        SELECT * FROM Person
+	WHERE
+         (PersonType = _PersonType OR _PersonType IS NULL) AND
+        (FirstName = _FirstName AND LastName = _LastName AND _FirstName IS NOT NULL AND _LastName IS NOT NULL) AND
+        (Email = _Email OR _Email IS NULL) AND
+        (Phone = _Phone OR _Phone IS NULL) AND
+        (DocumentType = _DocumentType OR _DocumentType IS NULL) AND
+        (Document = _Document AND _Document IS NOT NULL) AND
+        (PhotoUrl = _PhotoUrl OR _PhotoUrl IS NULL) AND
+        (SedeId = _SedeId AND _SedeId IS NOT NULL) AND
+        (CreatedDate = _CreatedDate AND _CreatedDate IS NOT NULL) AND
+        (ModifiedDate = _ModifiedDate OR _ModifiedDate IS NULL) AND
+        (State = _State OR _State IS NULL);
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `AddNewRol` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddNewRol`(
+		IN _RolId INT,
+		IN _Description VARCHAR(100),
+        IN _State TINYINT
+	)
+BEGIN
+		INSERT INTO Rol ( RolId, Description, State)
+        VALUE(_RolId, _Description, _State);
+        SELECT * FROM Rol
+        WHERE
+				Description = _Description AND
+                State = _State;
+		END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `AddNewSede` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddNewSede`(
+		IN _Name VARCHAR(100),
+		IN _Address VARCHAR(200),
+		IN _City VARCHAR(100)
+    )
+BEGIN 
+		INSERT INTO sede (Name, Address, City)
+        VALUES (_Name, _Address, _City);
+		SELECT * FROM sede
+	WHERE
+		Name = _Name OR
+        Address = _Address OR
+        City = _City;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `AddNewUsuario` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddNewUsuario`(
+     	IN _UserName	varchar(100),
+		IN _UserPass	varchar(100),
+		IN _Email	varchar(100),
+		IN _RolId	int,
+		IN _SedeId	int,
+		IN _State	tinyint
+        )
+BEGIN
+			INSERT INTO usuario
+            (
+            UserName,
+			UserPass,
+			Email,
+			RolId,
+			SedeId,
+			State
+            )
+            VALUES
+            (
+            _UserName,
+			_UserPass,
+			_Email,
+			_RolId,
+			_SedeId,
+			_State   
+            );
+            SELECT * FROM usuario
+            WHERE
+            (UserName=_UserName AND _UserName IS NOT NULL) AND 
+            (UserPass=_UserPass AND _UserPass IS NOT NULL) AND
+			(Email=_Email OR _Email IS NULL) AND
+			(RolId=_RolId AND _RolId IS NOT NULL) AND
+			(SedeId=_SedeId AND _SedeId IS NOT NULL) AND
+			(State=_State OR _State IS NULL);
+        END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `DeleteAttendance` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `DeleteAttendance`(
+		IN _AttendanceId INT
+    )
+BEGIN
+		DELETE FROM attendance
+        WHERE 
+			AttendanceId = _AttendanceId;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `DeleteGuardDuty` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `DeleteGuardDuty`(
+		IN _GuardDutyId INT
+    )
+BEGIN
+		UPDATE guardduty
+        SET STATUS = 0
+        WHERE
+			GuardDutyId = _GuardDutyId;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `DeletePerson` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `DeletePerson`(
+		IN _PersonId INT
+    )
+BEGIN
+		DELETE FROM person
+        WHERE
+         PersonId = _PersonId;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `DeleteRol` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `DeleteRol`(
+		IN _RolId INT
+    )
+BEGIN
+		DELETE FROM rol
+        WHERE
+			RolId = _RolId;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `DeleteSede` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `DeleteSede`(
+		IN _SedeId INT
+    )
+BEGIN
+		DELETE FROM sede
+        WHERE SedeId = _SedeId;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `DeleteUsuario` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `DeleteUsuario`(
+		IN _UserId INT
+    )
+BEGIN
+		DELETE FROM USUARIO
+        WHERE
+			UserId = _UserId;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `GetAllAttendance` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetAllAttendance`()
+BEGIN
+		SELECT * FROM attendance;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `GetAllGuardDuty` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetAllGuardDuty`()
+BEGIN
+		SELECT * FROM guardduty;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `GEtAllPerson` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GEtAllPerson`()
+BEGIN
+		SELECT * FROM Person;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `GetAllRol` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetAllRol`()
+BEGIN
+		SELECT * FROM rol;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `GetAllSede` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetAllSede`()
+BEGIN
+    SELECT * FROM sede;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `GetAllUsuario` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetAllUsuario`()
+BEGIN
+		SELECT * FROM USUARIO;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `GetAttendanceById` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetAttendanceById`(
+		IN _AttendanceId INT
+    )
+BEGIN
+		SELECT * FROM attendance WHERE AttendanceId = _AttendanceId;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `GetGuardDutyById` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetGuardDutyById`(
+		IN _GuardDutyId INT
+    )
+BEGIN
+		SELECT * FROM guardduty
+        WHERE
+			GuardDutyId = _GuardDutyId;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `GetPersonById` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetPersonById`(
+		IN _PersonId INT
+    )
+BEGIN
+		SELECT * FROM person
+        WHERE
+			PersonId = _PersonId;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `GetRolByID` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetRolByID`(
+			IN _RolId INT
+	)
+BEGIN
+		SELECT * FROM Rol WHERE RolId = _RolId;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `GetSedeById` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetSedeById`(
+    _SedeId INT
+    )
+BEGIN
+		SELECT SedeId
+			   , Name
+               , Address
+               , City 
+		FROM 
+			   sede 
+        WHERE 
+			   SedeId = _SedeId;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `GetUsuarioByID` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetUsuarioByID`(
+		IN _UserId INT
+    )
+BEGIN
+		SELECT * FROM usuario WHERE UserId = _UserId;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `UpdateAttendance` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UpdateAttendance`(
+				IN _AttendanceId INT,
+				IN _PersonId	int,
+				IN _UserId	int,
+				IN _GuardDutyId	int,
+				IN _DateIn	datetime,
+				IN _DateOut	datetime,
+				IN _Status	tinyint
+        )
+BEGIN
+			UPDATE attendance
+            SET
+				PersonId= _PersonId,
+				UserId= _UserId,
+				GuardDutyId= _GuardDutyId,
+				DateIn= _DateIn,
+				DateOut= _DateOut,
+				Status= _Status	
+            WHERE
+				AttendanceId= _AttendanceId;
+        END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `UpdateGuardDuty` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UpdateGuardDuty`(
+		IN _GuardDutyId	int,
+		IN _PersonId	int,
+		IN _UserId	int,
+		IN _DateIn	datetime,
+		IN _DateOut	datetime,
+		IN _Status	tinyint
+    )
+BEGIN
+		UPDATE guardduty
+        SET
+			PersonId= _PersonId,
+			UserId= _UserId,
+			DateIn= _DateIn,
+			DateOut= _DateOut,
+			Status= _Status
+        WHERE
+			GuardDutyId = _GuardDutyId;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `UpDAtePerson` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UpDAtePerson`(
+    IN _PersonId INT,
+    IN _PersonType	tinyint	,
+	IN _FirstName	varchar(200),
+	IN _LastName	varchar(200),
+	IN _Email	varchar(100),
+	IN _Phone	varchar(50),
+	IN _DocumentType	tinyint,
+	IN _Document	varchar(50),
+	IN _PhotoUrl	varchar(200),
+	IN _SedeId	int,
+	IN _CreatedDate	datetime,
+	IN _ModifiedDate	datetime,
+	IN _State	tinyint
+    )
+BEGIN
+		UPDATE person
+        SET
+		 PersonType= _PersonType,
+		 FirstName= _FirstName,
+		 LastName= _LastName,
+		 Email= _Email,
+		 Phone= _Phone,
+		 DocumentType= _DocumentType,
+		 Document= _Document,
+		 PhotoUrl= _PhotoUrl,
+		 SedeId= _SedeId,
+		 CreatedDate= _CreatedDate,
+		 ModifiedDate= _ModifiedDate,
+		 State= _State
+        WHERE
+		 PersonId = _PersonId;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `UpDateRol` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UpDateRol`(
+		IN _RolId INT,
+        IN _Description VARCHAR(100),
+        IN _State TINYINT
+	)
+BEGIN
+		UPDATE rol
+        SET
+			Description = _Description,
+            State = _State
+        WHERE
+			RolId = _RolId;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `UpDateSede` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UpDateSede`(
+		IN _SedeId INT,
+		IN _Name VARCHAR(100),
+		IN _Address VARCHAR(200),
+		IN _City VARCHAR(100)
+	)
+BEGIN
+		UPDATE sede 
+        SET
+			Name = _Name,
+            Address = _Address,
+            City = _City
+        WHERE
+			SedeId = _SedeId;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `UpDateUsuario` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UpDateUsuario`(
+		IN _UserId INT,
+		IN _UserName	varchar(100),
+		IN _UserPass	varchar(100),
+		IN _Email	varchar(100),
+		IN _RolId	int,
+		IN _SedeId	int,
+		IN _State	tinyint
+    )
+BEGIN
+    UPDATE usuario
+    SET
+		UserName=_UserName,
+		UserPass =_UserPass,
+		Email =_Email,
+		RolId =_RolId,
+		SedeId =_SedeId,
+		State =_State	
+    WHERE
+		UserId = _UserId;
+    END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -239,4 +1124,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-03 17:40:29
+-- Dump completed on 2024-06-10 22:45:37
