@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using AutoMapper.Configuration.Annotations;
+using Dapper;
 using GuardiaAPI.Entities;
 using Microsoft.Extensions.Options;
 using MySqlConnector;
@@ -21,60 +22,51 @@ namespace GuardiaAPI.Repositories
 
         public void Delete(int guardDutyId)
         {
-            _db.Execute("DELETE FROM guardDuty WHERE GuardDutyId = @GuardDutyId", new { guardDutyId });
+            var parameters = new DynamicParameters();
+            parameters.Add("_GuardDutyId", guardDutyId);
+            _db.Execute("DeleteGuardDuty", parameters, commandType:CommandType.StoredProcedure);
         }
 
         public List<GuardDuty> GetAll()
         {
-            return _db.Query<GuardDuty>("SELECT * FROM guardDuty").ToList();
+            return _db.Query<GuardDuty>("GetAllGuardDuty", commandType:CommandType.StoredProcedure).ToList();
         }
 
         public GuardDuty GetById(int guardDutyId)
         {
-            return _db.Query<GuardDuty>("SELECT * FROM guardDuty WHERE GuardDutyId = @GuardDutyId", new { guardDutyId }).FirstOrDefault(new GuardDuty());
+            var parameters = new DynamicParameters();
+            parameters.Add("_GuardDutyId", guardDutyId);
+            return _db.Query<GuardDuty>("GetGuardDutyById", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
         }
 
         public GuardDuty Insert(GuardDuty entity)
         {
-            var sql = @"INSERT INTO guardDuty 
-                        (PersonId,
-                         UserId,
-                         DateIn,
-                         DateOut,
-                         Status)
-                         VALUES              
-                        (@PersonId,
-                         @UserId,
-                         @DateIn,
-                         @DateOut,
-                         @Status);
+            var parameters = new DynamicParameters();
+            parameters.Add("_PersonId", entity.PersonId);
+            parameters.Add("_UserId", entity.UserId);
+            parameters.Add("_DateIn", entity.DateIn);
+            parameters.Add("_DateOut", entity.DateOut);
+            parameters.Add("_Status", entity.Status);
 
-                        SELECT LAST_INSERT_ID();";
 
-            var guardDutyId = _db.Query<int>(sql, entity).Single();
+            var guardDutyId = _db.Query<int>("AddNewGuardDuty", parameters, commandType: CommandType.StoredProcedure).Single();
             entity.GuardDutyId = guardDutyId;
             return entity;
         }
 
         public void Update(GuardDuty entity, int guardDutyId)
         {
-            var sql = @"UPDATE guardDuty SET 
-                        PersonId=@PersonId,
-                        UserId=@UserId,
-                        DateIn=@DateIn,
-                        DateOut=@DateOut,
-                        Status=@Status
-                        WHERE GuardDutyId = @GuardDutyId";
+            entity.GuardDutyId = guardDutyId;
+            var parameters = new DynamicParameters();
+            parameters.Add("_GuardDutyId", entity.GuardDutyId);
+            parameters.Add("_PersonId", entity.PersonId);
+            parameters.Add("_UserId", entity.UserId);
+            parameters.Add("_DateIn", entity.DateIn);
+            parameters.Add("_DateOut", entity.DateOut);
+            parameters.Add("_Status", entity.Status);
 
-            _db.Execute(sql, new
-            {
-                entity.PersonId,
-                entity.UserId,
-                entity.DateIn,
-                entity.DateOut,
-                entity.Status,
-                GuardDutyId = guardDutyId
-            });
+
+            _db.Query<int>("UpdateGuardDuty", parameters, commandType: CommandType.StoredProcedure);
         }
     }
 }

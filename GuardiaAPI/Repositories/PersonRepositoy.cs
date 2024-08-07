@@ -3,10 +3,7 @@ using GuardiaAPI.Entities;
 using Microsoft.Extensions.Options;
 using MySqlConnector;
 using System.Data;
-using System.Linq;
-using System.Numerics;
-using System.Reflection.Metadata;
-using System.Xml.Linq;
+
 
 namespace GuardiaAPI.Repositories
 {
@@ -25,88 +22,65 @@ namespace GuardiaAPI.Repositories
 
         public void Delete(int personId)
         {
-            _db.Execute("DELETE FROM Person WHERE PersonId = @PersonId", new { personId });
+            var parameters = new DynamicParameters();
+            parameters.Add("_PersonId", personId);
+            _db.Execute("DeletePerson",parameters, commandType: CommandType.StoredProcedure);
         }
 
         public List<Person> GetAll()
         {
-            return _db.Query<Person>("SELECT * FROM person").ToList();
+            return _db.Query<Person>("GEtAllPerson", commandType: CommandType.StoredProcedure).ToList();
         }
 
         public Person GetById(int personId)
         {
-            return _db.Query<Person>("SELECT * FROM Person WHERE PersonId = @PersonId", new { personId }).FirstOrDefault(new Person());
+            var parameters = new DynamicParameters();
+            parameters.Add("_PersonId", personId);
+            return _db.Query<Person>("GetPersonById", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
         }
 
         public Person Insert(Person entity)
         {
-            var sql = @"INSERT INTO Person 
-                        (PersonType, 
-                         FirstName, 
-                         LastName, 
-                         Email, 
-                         Phone, 
-                         DocumentType, 
-                         Document, 
-                         PhotoUrl, 
-                         SedeId, 
-                         CreatedDate,
-                         ModifiedDate, 
-                         State) 
-                        VALUES              
-                        (@PersonType, 
-                         @FirstName, 
-                         @LastName, 
-                         @Email, 
-                         @Phone, 
-                         @DocumentType, 
-                         @Document, 
-                         @PhotoUrl, 
-                         @SedeId, 
-                         @CreatedDate,
-                         @ModifiedDate, 
-                         @State);
+            var parameters = new DynamicParameters();
+            parameters.Add("_PersonType", entity.PersonType);
+            parameters.Add("_FirstName", entity.FirstName);
+            parameters.Add("_LastName", entity.LastName);
+            parameters.Add("_Email", entity.Email);
+            parameters.Add("_Phone", entity.Phone);
+            parameters.Add("_DocumentType", entity.DocumentType);
+            parameters.Add("_Document", entity.Document);
+            parameters.Add("_PhotoUrl", entity.PhotoUrl);
+            parameters.Add("_SedeId", entity.SedeId);
+            parameters.Add("_CreatedDate", entity.CreatedDate);
+            parameters.Add("_ModifiedDate", entity.ModifiedDate);
+            parameters.Add("_State", entity.State);
 
-                        SELECT LAST_INSERT_ID();";
-
-            var personId = _db.Query<int>(sql, entity).Single();
+            var personId = _db.Query<int>("AddNewPerson", parameters, commandType: CommandType.StoredProcedure).Single();
             entity.PersonId = personId;
             return entity;
         }
 
         public void Update(Person entity, int personId)
         {
-            var sql = @"UPDATE Person SET 
-                        PersonType= @PersonType, 
-                        FirstName= @FirstName, 
-                        LastName= @LastName, 
-                        Email= @Email, 
-                        Phone= @Phone, 
-                        DocumentType= @DocumentType,
-                        Document= @Document, 
-                        PhotoUrl= @PhotoUrl, 
-                        SedeId= @SedeId, 
-                        CreatedDate= @CreatedDate,
-                        ModifiedDate= @ModifiedDate,
-                        State= @State
-                        WHERE PersonId = @PersonId";
+            entity.PersonId = personId;
 
-            _db.Execute(sql, new
-            {
-                entity.PersonType,
-                entity.FirstName,
-                entity.LastName,
-                entity.Email,
-                entity.Phone,
-                entity.DocumentType,
-                entity.Document,
-                entity.PhotoUrl,
-                entity.SedeId,
-                entity.CreatedDate,
-                entity.ModifiedDate,
-                entity.State,
-                PersonId = personId
-            }); 
+            var parameters = new DynamicParameters();
+            parameters.Add("_PersonId", entity.PersonId);
+            parameters.Add("_PersonType", entity.PersonType);
+            parameters.Add("_FirstName", entity.FirstName);
+            parameters.Add("_LastName", entity.LastName);
+            parameters.Add("_Email", entity.Email);
+            parameters.Add("_Phone", entity.Phone);
+            parameters.Add("_DocumentType", entity.DocumentType);
+            parameters.Add("_Document", entity.Document);
+            parameters.Add("_PhotoUrl", entity.PhotoUrl);
+            parameters.Add("_SedeId", entity.SedeId);
+            parameters.Add("_CreatedDate", entity.CreatedDate);
+            parameters.Add("_ModifiedDate", entity.ModifiedDate);
+            parameters.Add("_State", entity.State);
+
+            _db.Execute("UpDAtePerson", parameters, commandType: CommandType.StoredProcedure);
+            
         }
     }
 }

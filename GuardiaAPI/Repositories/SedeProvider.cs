@@ -3,21 +3,18 @@ using GuardiaAPI.Entities;
 using Microsoft.Extensions.Options;
 using MySqlConnector;
 using System.Data;
-using System.Linq;
-using System.Net;
-using static Dapper.SqlMapper;
 
 namespace GuardiaAPI.Repositories
 {
     public class SedeProvider : IRepository<Sede, int>
     {
         private readonly IDbConnection _db;
-        private readonly IConfiguration _configuration;
+        
 
         public SedeProvider(IOptions<ConnectionStringList> connectionStrings, IConfiguration configuration)
         {
             _db = new MySqlConnection(connectionStrings.Value.Default);
-            _configuration = configuration;
+            
         }
         public void Dispose()
         {
@@ -37,9 +34,9 @@ namespace GuardiaAPI.Repositories
 
         public Sede GetById(int sedeId)
         {
-            var parmeters = new DynamicParameters();
-            parmeters.Add("_SedeId",sedeId);
-            return _db.Query<Sede>("GetSedeById", parmeters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            var parameters = new DynamicParameters();
+            parameters.Add("_SedeId",sedeId);
+            return _db.Query<Sede>("GetSedeById", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
         }
 
         public Sede Insert(Sede entity)

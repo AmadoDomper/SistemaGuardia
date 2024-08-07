@@ -20,66 +20,48 @@ namespace GuardiaAPI.Repositories
         }
         public void Delete(int attendanceId)
         {
-            _db.Execute("DELETE FROM attendance WHERE AttendanceId = @AttendanceId", new { attendanceId });
+            var parameters = new DynamicParameters();
+            parameters.Add("_AttendanceId", attendanceId);
+            _db.Execute("DeleteAttendance", parameters, commandType:CommandType.StoredProcedure);
         }
         public List<Attendance> GetAll()
         {
-            return _db.Query<Attendance>("SELECT * FROM attendance").ToList();
+            return _db.Query<Attendance>("GetAllAttendance", commandType:CommandType.StoredProcedure).ToList();
         }
         public Attendance GetById(int attendanceId)
         {
-            return _db.Query<Attendance>("SELECT * FROM attendance WHERE AttendanceId = @AttendanceId", new { attendanceId }).FirstOrDefault(new Attendance());
+            var parameters = new DynamicParameters();
+            parameters.Add("_AttendanceId", attendanceId);
+            return _db.Query<Attendance>("GetAttendanceById",parameters, commandType:CommandType.StoredProcedure).FirstOrDefault();
         }
         public Attendance Insert(Attendance entity)
         {
-            var sql = @"INSERT INTO attendance 
-                        (
-                        PersonId,
-                        UserId,
-                        GuardDutyId,
-                        DateIn,
-                        DateOut,
-                        Status 		
-                        )
-                         VALUES              
-                        (
-                        @PersonId,
-                        @UserId,
-                        @GuardDutyId,
-                        @DateIn,
-                        @DateOut,
-                        @Status 
-                        );
+            var parameters = new DynamicParameters();
+            parameters.Add("_PersonId", entity.PersonId);
+            parameters.Add("_UserId", entity.UserId);
+            parameters.Add("_GuardDutyId", entity.GuardDutyId);
+            parameters.Add("_DateIn", entity.DateIn);
+            parameters.Add("_DateOut", entity.DateOut);
+            parameters.Add("_Status", entity.Status);
 
-                        SELECT LAST_INSERT_ID();";
-
-            var attendanceId = _db.Query<int>(sql, entity).Single();
+            var attendanceId = _db.Query<int>("AddNewAttendance",parameters, commandType:CommandType.StoredProcedure).Single();
             entity.AttendanceId = attendanceId;
             return entity;
         }
         public void Update(Attendance entity, int attendanceId)
         {
-            var sql = @"UPDATE attendance SET 
-                        PersonId=@PersonId,
-                        UserId=@UserId,
-                        GuardDutyId=@GuardDutyId,
-                        DateIn=@DateIn,
-                        DateOut=@DateOut,
-                        Status=@Status
+            entity.AttendanceId = attendanceId;
+            var parameters = new DynamicParameters();
+            parameters.Add("_AttendanceId", entity.AttendanceId);
+            parameters.Add("_PersonId", entity.PersonId);
+            parameters.Add("_UserId", entity.UserId);
+            parameters.Add("_GuardDutyId", entity.GuardDutyId);
+            parameters.Add("_DateIn", entity.DateIn);
+            parameters.Add("_DateOut", entity.DateOut);
+            parameters.Add("_Status", entity.Status);
 
-
-                        WHERE AttendanceId = @AttendanceId";
-
-            _db.Execute(sql, new
-            {
-                entity.PersonId,
-                entity.UserId,
-                entity.GuardDutyId,
-                entity.DateIn,
-                entity.DateOut,
-                entity.Status,
-                AttendanceId = attendanceId
-            });
+            _db.Query<int>("UpdateAttendance", parameters, commandType: CommandType.StoredProcedure);
+            
         }
     }
 }

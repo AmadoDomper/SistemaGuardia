@@ -21,51 +21,55 @@ namespace GuardiaAPI.Repositories
 
         public void Delete(int userId)
         {
-            _db.Execute("DELETE FROM Usuario WHERE UserId = @UserId", new { userId });
+            var parameters = new DynamicParameters();
+            parameters.Add("_UserId", userId);
+            _db.Execute("DeleteUsuario", parameters, commandType:CommandType.StoredProcedure);
+            
         }
 
         public List<User> GetAll()
         {
-            return _db.Query<User>("SELECT * FROM usuario").ToList();
+            return _db.Query<User>("GetAllUsuario", commandType:CommandType.StoredProcedure).ToList();
         }
 
         public User GetById(int userId)
         {
-            return _db.Query<User>("SELECT * FROM Usuario WHERE UserId = @UserId", new { userId }).FirstOrDefault(new User()); ;
+            var parameters = new DynamicParameters();
+            parameters.Add("_UserId", userId);
+            return _db.Query<User>("GetUsuarioByID", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
         }
 
         public User Insert(User entity)
         {
-            var sql = @"INSERT INTO Usuario (UserName, UserPass, Email, RolId, SedeId, State) 
-                        VALUES              (@UserName, @UserPass, @Email, @RolId, @SedeId, @State);
-                        SELECT LAST_INSERT_ID();";
 
-            var userId = _db.Query<int>(sql, entity).Single();
+            var parameters = new DynamicParameters();
+            parameters.Add("_UserName", entity.UserName);
+            parameters.Add("_UserPass", entity.UserPass);
+            parameters.Add("_Email", entity.Email);
+            parameters.Add("_RolId", entity.RolId);
+            parameters.Add("_SedeId", entity.SedeId);
+            parameters.Add("_State", entity.State);
+
+            var userId = _db.Query<int>("AddNewUsuario", parameters, commandType: CommandType.StoredProcedure).Single();
             entity.UserId = userId;
             return entity;
         }
 
         public void Update(User entity, int userId)
         {
-            var sql = @"UPDATE Usuario SET 
-                        UserName = @UserName, 
-                        UserPass = @UserPass, 
-                        Email = @Email,
-                        RolId = @RolId,
-                        SedeId = @SedeId,
-                        State = @State
-                        WHERE UserId = @UserId";
+            entity.UserId = userId;
 
-            _db.Execute(sql, new
-            {
-                entity.UserName,
-                entity.UserPass,
-                entity.Email,
-                entity.RolId,
-                entity.SedeId,
-                entity.State,
-                UserId = userId
-            });
+            var parameters = new DynamicParameters();
+            parameters.Add("_UserId", entity.UserId);
+            parameters.Add("_UserName", entity.UserName);
+            parameters.Add("_UserPass", entity.UserPass);
+            parameters.Add("_Email", entity.Email);
+            parameters.Add("_RolId", entity.RolId);
+            parameters.Add("_SedeId", entity.SedeId);
+            parameters.Add("_State", entity.State);
+
+            _db.Query<int>("UpDateUsuario", parameters, commandType: CommandType.StoredProcedure);
+            
         }
     }
 }
